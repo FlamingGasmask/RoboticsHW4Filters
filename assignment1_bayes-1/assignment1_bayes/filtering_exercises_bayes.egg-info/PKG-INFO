@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: filtering_exercises_bayes
+Version: 0.1.0
+Summary: Filtering exercises for robotics, split into three assignments: Bayes Filter, Extended Kalman Filter, and Particle Filter
+Home-page: https://github.com/yourusername/filtering_exercises
+Author: Leo Beuken
+Author-email: N/A
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Education
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Robotics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: matplotlib>=3.4.0
+Provides-Extra: assignment1
+Requires-Dist: pytest>=6.0.0; extra == "assignment1"
+Requires-Dist: jupyter>=1.0.0; extra == "assignment1"
+Provides-Extra: assignment2
+Requires-Dist: pytest>=6.0.0; extra == "assignment2"
+Requires-Dist: jupyter>=1.0.0; extra == "assignment2"
+Requires-Dist: scipy>=1.7.0; extra == "assignment2"
+Provides-Extra: assignment3
+Requires-Dist: pytest>=6.0.0; extra == "assignment3"
+Requires-Dist: jupyter>=1.0.0; extra == "assignment3"
+Requires-Dist: scipy>=1.7.0; extra == "assignment3"
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: black>=21.0.0; extra == "dev"
+Requires-Dist: flake8>=3.9.0; extra == "dev"
+Requires-Dist: sphinx>=4.0.0; extra == "dev"
+Requires-Dist: jupyter>=1.0.0; extra == "dev"
+
+# Assignment 1: Discrete Bayes Filter
+This assignment focuses on implementing a Discrete Bayes Filter for robot localiation in a discrete gridworld with random robot movements and basic range measurements
+
+## Learning Objectives
+
+- build conceptual understanding of recurcive probabilistic estimation
+- gain hands-on experience implementing and visualizing the update process
+
+## Installation
+Navigate to the assignment1_bayes directory in terminal, then run:
+```bash
+pip install -e .
+```
+
+## Implementation Tasks
+
+You need to implement two methods in `bayes_filter.py`:
+
+1. predict
+2. update
+
+Additionally description of what must be implemented can be found in the docstrings of the functions.
+
+## Visualization
+
+To see a visualization of the state estimation for a randomly moving object, run the following command from the assignment1_bayes directory after implementing the functions:
+```bash
+python -m filtering_exercises_bayes.assignment1_bayes.tests.test_bayes_filter_vis
+```
+

@@ -1,0 +1,15 @@
+numpy>=1.21.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+
+[assignment3]
+pytest>=6.0.0
+jupyter>=1.0.0
+scipy>=1.7.0
+
+[dev]
+pytest>=6.0.0
+black>=21.0.0
+flake8>=3.9.0
+sphinx>=4.0.0
+jupyter>=1.0.0

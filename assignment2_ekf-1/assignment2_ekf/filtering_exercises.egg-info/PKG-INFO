@@ -1,0 +1,98 @@
+Metadata-Version: 2.1
+Name: filtering_exercises
+Version: 0.1.0
+Summary: Filtering exercises for robotics, split into three assignments: Bayes Filter, Extended Kalman Filter, and Particle Filter
+Home-page: https://github.com/yourusername/filtering_exercises
+Author: Brendan
+Author-email: your.email@example.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Education
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Robotics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: matplotlib>=3.4.0
+Provides-Extra: assignment1
+Requires-Dist: pytest>=6.0.0; extra == "assignment1"
+Requires-Dist: jupyter>=1.0.0; extra == "assignment1"
+Provides-Extra: assignment2
+Requires-Dist: pytest>=6.0.0; extra == "assignment2"
+Requires-Dist: jupyter>=1.0.0; extra == "assignment2"
+Requires-Dist: scipy>=1.7.0; extra == "assignment2"
+Provides-Extra: assignment3
+Requires-Dist: pytest>=6.0.0; extra == "assignment3"
+Requires-Dist: jupyter>=1.0.0; extra == "assignment3"
+Requires-Dist: scipy>=1.7.0; extra == "assignment3"
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: black>=21.0.0; extra == "dev"
+Requires-Dist: flake8>=3.9.0; extra == "dev"
+Requires-Dist: sphinx>=4.0.0; extra == "dev"
+Requires-Dist: jupyter>=1.0.0; extra == "dev"
+
+# Assignment 2: Extended Kalman Filter
+
+This assignment focuses on implementing an Extended Kalman Filter (EKF) for robot localization in a continuous world with nonlinear dynamics.
+
+## Learning Objectives
+
+- Understand nonlinear state estimation
+- Implement linearization through Jacobian matrices
+- Handle continuous state spaces
+- Work with Gaussian distributions and uncertainty
+
+## Installation
+
+```bash
+pip install -e ".[assignment2]"
+```
+
+## Implementation Tasks
+
+You need to implement several methods in `extended_kalman_filter.py`:
+
+1. `predict(action)`: Implement the EKF prediction step
+   - Update state mean using nonlinear motion model
+   - Compute motion model Jacobian
+   - Update covariance matrix
+   - Handle different actions (forward, turn)
+
+2. `update(readings)`: Implement the EKF measurement update step
+   - Compute measurement Jacobian
+   - Calculate Kalman gain
+   - Update state estimate and covariance
+   - Handle range-bearing measurements
+
+
+## Testing Your Implementation
+
+Run the provided test suite:
+```bash
+pytest tests/test_extended_kalman_filter.py -v
+```
+
+## Visualization
+
+```python
+from filtering_exercises.environments import NonlinearWorld
+from filtering_exercises.assignment2_ekf import ExtendedKalmanFilter
+from filtering_exercises.utils import FilterVisualizer
+
+# Create environment and filter
+env = NonlinearWorld()
+ekf = ExtendedKalmanFilter(env)
+
+# Visualize performance
+vis = FilterVisualizer(env, ekf)
+vis.visualize_episode()
+```
+
