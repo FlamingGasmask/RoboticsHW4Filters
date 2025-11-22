@@ -294,7 +294,7 @@ class ExtendedKalmanFilter:
         #      ∂r/∂θ = 0   (heading does not affect range)
         dr_dx = dx / r
         dr_dy = dy / r
-        dr_dtheta = 0.0  # heading does not affect range
+        dr_dtheta = 0.0
         
         # 4. Handle the special case where r is very close to zero (to avoid
         #    division by zero). In that case, return a zero matrix. 1e-9 is a good threshold.
@@ -455,9 +455,9 @@ class ExtendedKalmanFilter:
         #         - P and R are stored as attributes of self (self.covariance and self.R)
         #    - Kalman gain: K = P @ H.T @ inv(S)
         P = self.covariance
-        S = H @ P @ H.T + self.R  # (1,1)
+        S = H @ P @ H.T + self.R
         S_inv = np.linalg.inv(S)
-        K = P @ H.T @ S_inv       # (3,1)
+        K = P @ H.T @ S_inv
 
         # 4. Update state:
         #    - Compute innovation: y = measurements - expected_z
@@ -466,8 +466,8 @@ class ExtendedKalmanFilter:
         #    - Limit update magnitude if needed (based on self.max_position_update)
         #    - Apply update: self.state = self.state + dx
         #    - Call self._normalize_heading()
-        y = (z - z_pred).reshape(1, 1)   # innovation (1,1)
-        dx = (K @ y).reshape(-1)        # (3,)
+        y = (z - z_pred).reshape(1, 1)
+        dx = (K @ y).reshape(-1)
 
         pos_update_norm = np.linalg.norm(dx[:2])
         if pos_update_norm > self.max_position_update and pos_update_norm > 0:
@@ -483,7 +483,7 @@ class ExtendedKalmanFilter:
         #      P = (I - KH)P(I - KH).T + KRK.T
         #    - Call self._constrain_covariance()
         I = np.eye(self.n_states)
-        KH = K @ H                   # (3,3)
+        KH = K @ H
         self.covariance = (I - KH) @ P @ (I - KH).T + K @ self.R @ K.T
         self._constrain_covariance()
 
